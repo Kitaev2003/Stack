@@ -2,28 +2,28 @@
 
 int main()
 {
-    LOG_FILE = fopen("log.txt", "w");
-
-    Check_Open_File(LOG_FILE);
-
     Stack_Struct stk = {};
 
     stk.capacity = 10;
-
+    
     Stack_Order(&stk);
-
-    int val = 0;
-
-    scanf("%d", &val);
-
-    while(val!= 303)
-    {
-        Stack_Push(&stk, val);
-        scanf("%d", &val);
-    }
+    
+    Stack_Protect_Full(&stk);
+    
+    Stack_Push (&stk, 10);
+    Stack_Push (&stk, 20);
+    Stack_Push (&stk, 30);
+    Stack_Push (&stk, 40);
+    Stack_Push (&stk, 50);
+    Stack_Push (&stk, 60);
+    Stack_Push (&stk, 70);
+    Stack_Push (&stk, 80);
+    Stack_Push (&stk, 90);
+    Stack_Push (&stk, 100);
+    Stack_Push (&stk, 110);
 
     Print_In_File_Protect(stk);
-
+    
     Stack_Print(&stk);
 
     Stack_Free(&stk);

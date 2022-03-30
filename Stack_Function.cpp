@@ -1,10 +1,9 @@
+
 void Stack_Order(Stack_Struct* stk)
-{
+{	   
     assert(stk->capacity != 0);
 
-    stk->data = (int*) malloc(stk->capacity * sizeof(*stk->data));
-
-    Stack_Protect_Full(stk);
+    stk->data = (int*) malloc((stk->capacity + 1) * sizeof(*stk->data));
 }
 
 void Stack_Resize(Stack_Struct* stk)
@@ -45,6 +44,7 @@ int Stack_Pop(Stack_Struct* stk)
 {
     if(stk->size == PROTECTION_CELL)
     {
+    	printf("STACK_UNDERFLOW");
         exit(STACK_UNDERFLOW);
     }
 
@@ -57,18 +57,18 @@ int Stack_Pop(Stack_Struct* stk)
 
 void Stack_Print(Stack_Struct* stk)
 {
-    printf("Stack:\n");
-
 	while(stk->size != 1)
 	{
-		printf("%d\n", Stack_Pop(stk));
+		printf("%d\n", Stack_Pop(stk)); 
 	}
-}
+	
+	printf("Stack free");
+} 
 
 void Stack_Free(Stack_Struct* stk)
 {
     assert(stk);
-
+    
     if(stk->size > PROTECTION_CELL)
     {
         printf("STACK_STILL_FULL\n");
